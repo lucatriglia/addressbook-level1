@@ -493,7 +493,7 @@ public class AddressBook {
      * @return unsuccessful index person feedback message
      */
     private static String getMessageForUnsuccessfulIndexPerson(String commandArgs) {
-        return commandArgs + "cannot be indexed";
+        return commandArgs + " cannot be indexed";
     }
 
     /**
