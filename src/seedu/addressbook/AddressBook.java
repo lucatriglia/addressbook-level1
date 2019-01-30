@@ -105,6 +105,9 @@ public class AddressBook {
                                                       + PERSON_DATA_PREFIX_EMAIL + "EMAIL";
     private static final String COMMAND_ADD_EXAMPLE = COMMAND_ADD_WORD + " John Doe p/98765432 e/johnd@gmail.com";
 
+    private static final String COMMAND_INDEX_WORD = "index";
+
+
     private static final String COMMAND_FIND_WORD = "find";
     private static final String COMMAND_FIND_DESC = "Finds all persons whose names contain any of the specified "
                                         + "keywords (case-sensitive) and displays them as a list with index numbers.";
@@ -371,6 +374,8 @@ public class AddressBook {
         switch (commandType) {
         case COMMAND_ADD_WORD:
             return executeAddPerson(commandArgs);
+        case COMMAND_INDEX_WORD:
+            return executeIndexPerson(commandArgs);
         case COMMAND_FIND_WORD:
             return executeFindPersons(commandArgs);
         case COMMAND_LIST_WORD:
@@ -440,6 +445,33 @@ public class AddressBook {
     private static String getMessageForSuccessfulAddPerson(String[] addedPerson) {
         return String.format(MESSAGE_ADDED,
                 getNameFromPerson(addedPerson), getPhoneFromPerson(addedPerson), getEmailFromPerson(addedPerson));
+    }
+
+
+    private static String executeIndexPerson(String commandArgs) {
+        boolean isFound = false;
+        int index = 1;
+        for (String[] person: getAllPersonsInAddressBook()) {
+            if(commandArgs.equals(getNameFromPerson(person))) {
+                isFound = true;
+                break;
+            }
+            index++;
+        }
+
+        if(isFound) {
+            return getMassageForSuccessfulIndexPerson(commandArgs, index);
+        } else {
+            return getMessageForUnsuccessfulIndexPerson(commandArgs);
+        }
+    }
+
+    private static String getMassageForSuccessfulIndexPerson(String commandArgs, int index) {
+        return commandArgs + " is at index " + index;
+    }
+
+    private static String getMessageForUnsuccessfulIndexPerson(String commandArgs) {
+        return commandArgs + "cannot be indexed";
     }
 
     /**
