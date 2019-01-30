@@ -447,8 +447,17 @@ public class AddressBook {
                 getNameFromPerson(addedPerson), getPhoneFromPerson(addedPerson), getEmailFromPerson(addedPerson));
     }
 
-
+    /**
+     * Returns the index of a person in the list by name (specified in commandArgs)
+     *
+     * @param commandArgs name of person to be indexed
+     * @return feedback display message for the operation result
+     */
     private static String executeIndexPerson(String commandArgs) {
+        if(commandArgs.equals("")) {
+            return getMessageForInvalidCommandInput(COMMAND_INDEX_WORD, getUsageInfoForAddCommand());
+        }
+
         boolean isFound = false;
         int index = 1;
         for (String[] person: getAllPersonsInAddressBook()) {
@@ -466,10 +475,23 @@ public class AddressBook {
         }
     }
 
+    /**
+     * Constructs a feedback message for a successful index person command execution.
+     *
+     * @param commandArgs name of person successfully indexed
+     * @param index index of person successfully indexed
+     * @return successful index person feedback message
+     */
     private static String getMassageForSuccessfulIndexPerson(String commandArgs, int index) {
         return commandArgs + " is at index " + index;
     }
 
+    /**
+     * Constructs a feedback message for a unsuccessful index person command execution.
+     *
+     * @param commandArgs name of person unsuccessfully indexed
+     * @return unsuccessful index person feedback message
+     */
     private static String getMessageForUnsuccessfulIndexPerson(String commandArgs) {
         return commandArgs + "cannot be indexed";
     }
