@@ -62,6 +62,16 @@
   find Charlie Betsy
 
 ##########################################################
+# test index person command
+##########################################################
+
+  #should index correctly
+  index Charlie Dickson
+
+  #should not find the index since person doesn't exist
+  index Bob Tortilla
+
+##########################################################
 # test delete person command
 ##########################################################
 

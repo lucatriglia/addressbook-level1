@@ -204,6 +204,12 @@
 || 
 || 2 persons found!
 || ===================================================
+|| Enter command: || [Command entered:  index Charlie Dickson]
+|| Charlie Dickson is at index 3
+|| ===================================================
+|| Enter command: || [Command entered:  index Bob Tortilla]
+|| Bob Tortilla cannot be indexed
+|| ===================================================
 || Enter command: || [Command entered:  delete]
 || Invalid command format: delete 
 || delete: Deletes a person identified by the index number used in the last find/list call.
